@@ -1,0 +1,15 @@
+E:\新建文件夹\PreDataMenu\bin\Debug\PreDataMenu.dll.config
+E:\新建文件夹\PreDataMenu\bin\Debug\PreDataMenu.dll
+E:\新建文件夹\PreDataMenu\bin\Debug\PreDataMenu.pdb
+E:\新建文件夹\PreDataMenu\obj\Debug\DataPreProcess.csprojResolveAssemblyReference.cache
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.Properties.Resources.resources
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.RasReclassForm.resources
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.RasTercalForm.resources
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.RasterToVecterForm.resources
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.VecteToRasterForm.resources
+E:\新建文件夹\PreDataMenu\obj\Debug\DataPreProcess.csproj.GenerateResource.Cache
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.dll
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.pdb
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.FormClip.resources
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.FormMask.resources
+E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.WeightedOverlayForm.resources
