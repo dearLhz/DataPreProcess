@@ -19,34 +19,40 @@ namespace PreDataMenu
             switch (pos)
             {
                 case 0:
-                    itemDef.ID = "PreDataMenu.ReSmaple";
+                    itemDef.ID = "DataPreProcess.cClip";
                     itemDef.Group = false;
                     break;
 
                 case 1:
-                    itemDef.ID = "PreDataMenu.RasterToVecter";
+                    itemDef.ID = "DataPreProcess.cMask";
                     itemDef.Group = false;
                     break;
 
                 case 2:
-                    itemDef.ID = "PreDataMenu.VecterToRaster";
+                    itemDef.ID = "DataPreProcess.cRasCalculator";
                     itemDef.Group = false;
                     break;
 
                 case 3:
-                    itemDef.ID = "PreDataMenu.RasReclass";
+                    itemDef.ID = "DataPreProcess.cRasReclass";
                     itemDef.Group = false;
                     break;
 
                 case 4:
-                    itemDef.ID = "PreDataMenu.RasTercal";
+                    itemDef.ID = "DataPreProcess.cRasterToVecter";
                     itemDef.Group = false;
                     break;
 
                 case 5:
-                    itemDef.ID = "PreDataMenu.cProject";
+                    itemDef.ID = "DataPreProcess.cVecterToRaster";
                     itemDef.Group = false;
                     break;
+
+                case 6:
+                    itemDef.ID = "DataPreProcess.cWeigOverlay";
+                    itemDef.Group = false;
+                    break;
+
                 default:
                     break;
             }
