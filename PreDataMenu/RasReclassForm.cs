@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace PreDataMenu
 {
-    public partial class RasReclassForm : Form
+    public partial class RasReclassForm :  DevComponents.DotNetBar.OfficeForm
     {
 
         private IMap pMap = null;
@@ -39,6 +39,7 @@ namespace PreDataMenu
         {
             InitializeComponent();
             pMap = _pMap;
+            this.EnableGlass = false;
             //不显示最大化最小化按钮
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -48,9 +49,6 @@ namespace PreDataMenu
 
         private void RasReclassForm_Load(object sender, EventArgs e)
         {
-            txtPathSave.Text = "";
-            //改变窗体风格，使之不能用鼠标拖拽改变大小
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             try
             {
                 //初始化pMap变量
@@ -73,8 +71,8 @@ namespace PreDataMenu
                 lsvValue.Scrollable = true;         //需要时候显示滚动条
                 lsvValue.MultiSelect = false;             // 不可以多行选择
                 lsvValue.HeaderStyle = ColumnHeaderStyle.Nonclickable;// 不执行操作
-                lsvValue.Columns.Add("原值", 165, HorizontalAlignment.Center);
-                lsvValue.Columns.Add("新值", 165, HorizontalAlignment.Center);
+                lsvValue.Columns.Add("原值", 100, HorizontalAlignment.Center);
+                lsvValue.Columns.Add("新值", 100, HorizontalAlignment.Center);
                 lsvValue.LabelEdit = true;
                 //设置行高
                 ImageList imgList = new ImageList();

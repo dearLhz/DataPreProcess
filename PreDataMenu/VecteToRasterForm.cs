@@ -19,8 +19,8 @@ using System.Windows.Forms;
 
 namespace PreDataMenu
 {
-    
-    public partial class VecteToRasterForm : Form
+
+    public partial class VecteToRasterForm : DevComponents.DotNetBar.OfficeForm
     {
         public IMap pMap;
         public int layerIndex;
@@ -43,6 +43,7 @@ namespace PreDataMenu
         {
             InitializeComponent();
             //不显示最大化最小化按钮
+            this.EnableGlass = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             //去除图标
@@ -54,15 +55,18 @@ namespace PreDataMenu
         {
             textBox1.Text = "";
             textBox2.Text = "";
+            tbInput.Text = "";
+            comboBox2.Items.Clear();
+
             //改变窗体风格，使之不能用鼠标拖拽改变大小
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
-
+        int a=0;
         //打开
         private void buttonX1_Click_1(object sender, EventArgs e)
         {
             IWorkspaceFactory pWorkspaceFactory = new ShapefileWorkspaceFactory();
-
+            //pFLayer = new FeatureLayerClass();
             openFileDialog1.Filter = "shp|*.shp|All files (*.*)|*.*";
             openFileDialog1.RestoreDirectory = true;
 
@@ -83,6 +87,19 @@ namespace PreDataMenu
                 pFLayer.FeatureClass = pFC;
                 pFLayer.Name = pFC.AliasName; // 5       ;
                 
+            }
+
+            comboBox2.Enabled = true;
+
+            pTable = (ITable)pFLayer;
+
+            int fieldCount, i;
+            fieldCount = pTable.Fields.FieldCount;
+            comboBox2.Items.Clear();
+
+            for (i = 0; i < fieldCount; i++)
+            {
+                comboBox2.Items.Add(pTable.Fields.get_Field(i).Name);
             }
         }
 
@@ -178,22 +195,6 @@ namespace PreDataMenu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-       private void tbInput_TextChanged(object sender, EventArgs e)
-        {
-            comboBox2.Enabled = true;
-            
-            pTable = (ITable)pFLayer;
-
-            int fieldCount, i;
-            fieldCount = pTable.Fields.FieldCount;
-            comboBox2.Items.Clear();
-
-            for (i = 0; i < fieldCount; i++)
-            {
-                comboBox2.Items.Add(pTable.Fields.get_Field(i).Name);
-            }
-        }
-
        private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
             m_nFieldIndex = comboBox2.SelectedIndex;

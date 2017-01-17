@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace PreDataMenu
 {
-    public partial class FormMask : Form
+    public partial class FormMask : DevComponents.DotNetBar.OfficeForm
     {
         public IMap pMap;
         public int layerIndex;
@@ -45,6 +45,7 @@ namespace PreDataMenu
         public FormMask()
         {
             InitializeComponent();
+            this.EnableGlass = false;
             //不显示最大化最小化按钮
             this.MaximizeBox = false;
             this.MinimizeBox = false;

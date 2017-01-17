@@ -200,10 +200,6 @@
             this.textBoxX1.Size = new System.Drawing.Size(190, 21);
             this.textBoxX1.TabIndex = 12;
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // command1
             // 
             this.command1.Name = "command1";
@@ -225,6 +221,7 @@
             this.Controls.Add(this.textBoxX3);
             this.Controls.Add(this.textBoxX2);
             this.Controls.Add(this.textBoxX1);
+            this.DoubleBuffered = true;
             this.Name = "FormMask";
             this.Text = "掩膜提取";
             this.Load += new System.EventHandler(this.FormMask_Load);

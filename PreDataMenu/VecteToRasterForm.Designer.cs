@@ -204,10 +204,6 @@
             this.buttonX1.Text = "...";
             this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click_1);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // tbInput
             // 
             // 
@@ -222,7 +218,6 @@
             this.tbInput.PreventEnterBeep = true;
             this.tbInput.Size = new System.Drawing.Size(190, 21);
             this.tbInput.TabIndex = 14;
-            this.tbInput.TextChanged += new System.EventHandler(this.tbInput_TextChanged);
             // 
             // VecteToRasterForm
             // 
@@ -242,6 +237,7 @@
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.textBox1);
+            this.DoubleBuffered = true;
             this.Name = "VecteToRasterForm";
             this.Text = "矢量转栅格";
             this.Load += new System.EventHandler(this.VecteToRasterForm_Load);

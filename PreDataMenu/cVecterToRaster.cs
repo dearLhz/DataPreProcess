@@ -10,7 +10,7 @@ namespace PreDataMenu
 {
     class cVecterToRaster : MyPluginEngine.ICommand
     {
-       private MyPluginEngine.IApplication hk;
+        private MyPluginEngine.IApplication hk;
         private Bitmap m_hBitmap;
         private ESRI.ArcGIS.SystemUI.ICommand cmd = null;
         VecteToRasterForm F2Raster;
@@ -72,7 +72,6 @@ namespace PreDataMenu
         public void OnClick()
         {
             F2Raster.ShowDialog();
-
         }
 
         public void OnCreate(IApplication hook)

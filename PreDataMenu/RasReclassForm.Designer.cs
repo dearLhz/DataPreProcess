@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lsvValue = new System.Windows.Forms.ListView();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -43,6 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lsvValue = new DevComponents.DotNetBar.Controls.ListViewEx();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,16 +59,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设置重分类栅格值";
-            // 
-            // lsvValue
-            // 
-            this.lsvValue.FullRowSelect = true;
-            this.lsvValue.GridLines = true;
-            this.lsvValue.Location = new System.Drawing.Point(6, 20);
-            this.lsvValue.Name = "lsvValue";
-            this.lsvValue.Size = new System.Drawing.Size(320, 237);
-            this.lsvValue.TabIndex = 13;
-            this.lsvValue.UseCompatibleStateImageBehavior = false;
             // 
             // button7
             // 
@@ -192,6 +182,22 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "输出栅格:";
             // 
+            // lsvValue
+            // 
+            // 
+            // 
+            // 
+            this.lsvValue.Border.Class = "ListViewBorder";
+            this.lsvValue.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lsvValue.DisabledBackColor = System.Drawing.Color.Empty;
+            this.lsvValue.FullRowSelect = true;
+            this.lsvValue.GridLines = true;
+            this.lsvValue.Location = new System.Drawing.Point(6, 20);
+            this.lsvValue.Name = "lsvValue";
+            this.lsvValue.Size = new System.Drawing.Size(320, 242);
+            this.lsvValue.TabIndex = 13;
+            this.lsvValue.UseCompatibleStateImageBehavior = false;
+            // 
             // RasReclassForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -207,6 +213,7 @@
             this.Controls.Add(this.cmbFieldsName);
             this.Controls.Add(this.cmbLayer);
             this.Controls.Add(this.groupBox1);
+            this.DoubleBuffered = true;
             this.Name = "RasReclassForm";
             this.Text = "影像重分类";
             this.Load += new System.EventHandler(this.RasReclassForm_Load);
@@ -232,6 +239,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListView lsvValue;
+        private DevComponents.DotNetBar.Controls.ListViewEx lsvValue;
     }
 }

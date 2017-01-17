@@ -67,7 +67,7 @@ namespace PreDataMenu
 
         public string Name
         {
-            get { return "SpatialAnalys"; }
+            get { return "DataPreProcess"; }
         }
 
         public void OnClick()

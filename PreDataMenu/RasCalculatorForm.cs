@@ -15,11 +15,12 @@ using System.Windows.Forms;
 
 namespace PreDataMenu
 {
-    public partial class RasTercalForm : Form
+    public partial class RasTercalForm : DevComponents.DotNetBar.OfficeForm
     {
         public IMap pMap;
         string s=null;//表达式参数
-
+        IRasterLayer RLayer;
+        string pFullPath;
         #region 禁止最大化窗体
         [DllImport("user32.dll", EntryPoint = "GetSystemMenu")] //导入API函数
         extern static System.IntPtr GetSystemMenu(System.IntPtr hWnd, System.IntPtr bRevert);
@@ -33,6 +34,7 @@ namespace PreDataMenu
         public RasTercalForm()
         {
             InitializeComponent();
+            this.EnableGlass = false;
             //不显示最大化最小化按钮
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -66,8 +68,18 @@ namespace PreDataMenu
         /// <param name="e"></param>
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            richTextBox1.Text += "\"" + listBox1.SelectedItem + "\"";
-            s += "\"" + listBox1.SelectedItem + "\"";
+            int i, layerCount;
+            layerCount = pMap.LayerCount;
+            for (i = 0; i < layerCount; i++)
+            {
+                if (pMap.get_Layer(i).Name == listBox1.SelectedItem.ToString())
+                {
+                    RLayer = (RasterLayer)pMap.get_Layer(i);
+                    pFullPath = RLayer.FilePath;
+                }
+            }
+            richTextBox1.SelectedText += "\"" + pFullPath + "\"";
+            s += "\"" + pFullPath + "\"";
         }
         /// <summary>
         /// 输入函数表达式

@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.buttonX8 = new DevComponents.DotNetBar.ButtonX();
-            this.textBoxX5 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.textBoxX4 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.textBoxX3 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.tbStart = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.tbOver = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.tbPlus = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.tbZonghe = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
-            this.buttonX7 = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX6 = new DevComponents.DotNetBar.ButtonX();
+            this.bSave = new DevComponents.DotNetBar.ButtonX();
+            this.bOpen = new DevComponents.DotNetBar.ButtonX();
             this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
@@ -51,11 +52,16 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.tbOutput = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX9 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX10 = new DevComponents.DotNetBar.ButtonX();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.balloonTip1 = new DevComponents.DotNetBar.BalloonTip();
+            this.command1 = new DevComponents.DotNetBar.Command(this.components);
+            this.circularProgress1 = new DevComponents.DotNetBar.Controls.CircularProgress();
             this.groupPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,18 +70,18 @@
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel1.Controls.Add(this.buttonX8);
-            this.groupPanel1.Controls.Add(this.textBoxX5);
-            this.groupPanel1.Controls.Add(this.textBoxX4);
-            this.groupPanel1.Controls.Add(this.textBoxX3);
+            this.groupPanel1.Controls.Add(this.tbStart);
+            this.groupPanel1.Controls.Add(this.tbOver);
+            this.groupPanel1.Controls.Add(this.tbPlus);
             this.groupPanel1.Controls.Add(this.comboBox1);
-            this.groupPanel1.Controls.Add(this.textBoxX2);
+            this.groupPanel1.Controls.Add(this.tbZonghe);
             this.groupPanel1.Controls.Add(this.labelX9);
             this.groupPanel1.Controls.Add(this.labelX8);
             this.groupPanel1.Controls.Add(this.labelX7);
             this.groupPanel1.Controls.Add(this.labelX6);
             this.groupPanel1.Controls.Add(this.labelX5);
-            this.groupPanel1.Controls.Add(this.buttonX7);
-            this.groupPanel1.Controls.Add(this.buttonX6);
+            this.groupPanel1.Controls.Add(this.bSave);
+            this.groupPanel1.Controls.Add(this.bOpen);
             this.groupPanel1.Controls.Add(this.buttonX5);
             this.groupPanel1.Controls.Add(this.buttonX4);
             this.groupPanel1.Controls.Add(this.buttonX3);
@@ -126,51 +132,52 @@
             this.buttonX8.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX8.TabIndex = 31;
             this.buttonX8.Text = "设置等效影响";
+            this.buttonX8.Click += new System.EventHandler(this.buttonX8_Click);
             // 
-            // textBoxX5
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX5.Border.Class = "TextBoxBorder";
-            this.textBoxX5.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX5.ButtonCustom.Tooltip = "";
-            this.textBoxX5.ButtonCustom2.Tooltip = "";
-            this.textBoxX5.Location = new System.Drawing.Point(292, 369);
-            this.textBoxX5.Name = "textBoxX5";
-            this.textBoxX5.PreventEnterBeep = true;
-            this.textBoxX5.Size = new System.Drawing.Size(51, 21);
-            this.textBoxX5.TabIndex = 30;
-            // 
-            // textBoxX4
+            // tbStart
             // 
             // 
             // 
             // 
-            this.textBoxX4.Border.Class = "TextBoxBorder";
-            this.textBoxX4.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX4.ButtonCustom.Tooltip = "";
-            this.textBoxX4.ButtonCustom2.Tooltip = "";
-            this.textBoxX4.Location = new System.Drawing.Point(415, 369);
-            this.textBoxX4.Name = "textBoxX4";
-            this.textBoxX4.PreventEnterBeep = true;
-            this.textBoxX4.Size = new System.Drawing.Size(51, 21);
-            this.textBoxX4.TabIndex = 29;
+            this.tbStart.Border.Class = "TextBoxBorder";
+            this.tbStart.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbStart.ButtonCustom.Tooltip = "";
+            this.tbStart.ButtonCustom2.Tooltip = "";
+            this.tbStart.Location = new System.Drawing.Point(292, 369);
+            this.tbStart.Name = "tbStart";
+            this.tbStart.PreventEnterBeep = true;
+            this.tbStart.Size = new System.Drawing.Size(51, 21);
+            this.tbStart.TabIndex = 30;
             // 
-            // textBoxX3
-            // 
-            // 
+            // tbOver
             // 
             // 
-            this.textBoxX3.Border.Class = "TextBoxBorder";
-            this.textBoxX3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX3.ButtonCustom.Tooltip = "";
-            this.textBoxX3.ButtonCustom2.Tooltip = "";
-            this.textBoxX3.Location = new System.Drawing.Point(525, 369);
-            this.textBoxX3.Name = "textBoxX3";
-            this.textBoxX3.PreventEnterBeep = true;
-            this.textBoxX3.Size = new System.Drawing.Size(51, 21);
-            this.textBoxX3.TabIndex = 28;
+            // 
+            // 
+            this.tbOver.Border.Class = "TextBoxBorder";
+            this.tbOver.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbOver.ButtonCustom.Tooltip = "";
+            this.tbOver.ButtonCustom2.Tooltip = "";
+            this.tbOver.Location = new System.Drawing.Point(415, 369);
+            this.tbOver.Name = "tbOver";
+            this.tbOver.PreventEnterBeep = true;
+            this.tbOver.Size = new System.Drawing.Size(51, 21);
+            this.tbOver.TabIndex = 29;
+            // 
+            // tbPlus
+            // 
+            // 
+            // 
+            // 
+            this.tbPlus.Border.Class = "TextBoxBorder";
+            this.tbPlus.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbPlus.ButtonCustom.Tooltip = "";
+            this.tbPlus.ButtonCustom2.Tooltip = "";
+            this.tbPlus.Location = new System.Drawing.Point(525, 369);
+            this.tbPlus.Name = "tbPlus";
+            this.tbPlus.PreventEnterBeep = true;
+            this.tbPlus.Size = new System.Drawing.Size(51, 21);
+            this.tbPlus.TabIndex = 28;
             // 
             // comboBox1
             // 
@@ -180,20 +187,20 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 27;
             // 
-            // textBoxX2
+            // tbZonghe
             // 
             // 
             // 
             // 
-            this.textBoxX2.Border.Class = "TextBoxBorder";
-            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX2.ButtonCustom.Tooltip = "";
-            this.textBoxX2.ButtonCustom2.Tooltip = "";
-            this.textBoxX2.Location = new System.Drawing.Point(88, 342);
-            this.textBoxX2.Name = "textBoxX2";
-            this.textBoxX2.PreventEnterBeep = true;
-            this.textBoxX2.Size = new System.Drawing.Size(121, 21);
-            this.textBoxX2.TabIndex = 26;
+            this.tbZonghe.Border.Class = "TextBoxBorder";
+            this.tbZonghe.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbZonghe.ButtonCustom.Tooltip = "";
+            this.tbZonghe.ButtonCustom2.Tooltip = "";
+            this.tbZonghe.Location = new System.Drawing.Point(88, 342);
+            this.tbZonghe.Name = "tbZonghe";
+            this.tbZonghe.PreventEnterBeep = true;
+            this.tbZonghe.Size = new System.Drawing.Size(121, 21);
+            this.tbZonghe.TabIndex = 26;
             // 
             // labelX9
             // 
@@ -254,29 +261,30 @@
             this.labelX5.Size = new System.Drawing.Size(47, 23);
             this.labelX5.TabIndex = 21;
             this.labelX5.Text = "增量：";
-            this.labelX5.Click += new System.EventHandler(this.labelX5_Click);
             // 
-            // buttonX7
+            // bSave
             // 
-            this.buttonX7.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX7.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX7.Location = new System.Drawing.Point(567, 310);
-            this.buttonX7.Name = "buttonX7";
-            this.buttonX7.Size = new System.Drawing.Size(34, 23);
-            this.buttonX7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX7.TabIndex = 9;
-            this.buttonX7.Text = "保存";
+            this.bSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.bSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.bSave.Location = new System.Drawing.Point(567, 310);
+            this.bSave.Name = "bSave";
+            this.bSave.Size = new System.Drawing.Size(34, 23);
+            this.bSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.bSave.TabIndex = 9;
+            this.bSave.Text = "保存";
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
-            // buttonX6
+            // bOpen
             // 
-            this.buttonX6.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX6.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX6.Location = new System.Drawing.Point(567, 281);
-            this.buttonX6.Name = "buttonX6";
-            this.buttonX6.Size = new System.Drawing.Size(34, 23);
-            this.buttonX6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX6.TabIndex = 8;
-            this.buttonX6.Text = "打开";
+            this.bOpen.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.bOpen.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.bOpen.Location = new System.Drawing.Point(567, 281);
+            this.bOpen.Name = "bOpen";
+            this.bOpen.Size = new System.Drawing.Size(34, 23);
+            this.bOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.bOpen.TabIndex = 8;
+            this.bOpen.Text = "打开";
+            this.bOpen.Click += new System.EventHandler(this.bOpen_Click);
             // 
             // buttonX5
             // 
@@ -288,6 +296,7 @@
             this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX5.TabIndex = 7;
             this.buttonX5.Text = "下移";
+            this.buttonX5.Click += new System.EventHandler(this.buttonX5_Click);
             // 
             // buttonX4
             // 
@@ -299,6 +308,7 @@
             this.buttonX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX4.TabIndex = 6;
             this.buttonX4.Text = "上移";
+            this.buttonX4.Click += new System.EventHandler(this.buttonX4_Click);
             // 
             // buttonX3
             // 
@@ -310,6 +320,7 @@
             this.buttonX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX3.TabIndex = 5;
             this.buttonX3.Text = "删除";
+            this.buttonX3.Click += new System.EventHandler(this.buttonX3_Click);
             // 
             // buttonX2
             // 
@@ -321,6 +332,7 @@
             this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX2.TabIndex = 4;
             this.buttonX2.Text = "添加";
+            this.buttonX2.Click += new System.EventHandler(this.buttonX2_Click);
             // 
             // listView1
             // 
@@ -351,20 +363,20 @@
             // 
             this.columnHeader4.Text = "比例值";
             // 
-            // textBoxX1
+            // tbOutput
             // 
             // 
             // 
             // 
-            this.textBoxX1.Border.Class = "TextBoxBorder";
-            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX1.ButtonCustom.Tooltip = "";
-            this.textBoxX1.ButtonCustom2.Tooltip = "";
-            this.textBoxX1.Location = new System.Drawing.Point(93, 450);
-            this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.PreventEnterBeep = true;
-            this.textBoxX1.Size = new System.Drawing.Size(483, 21);
-            this.textBoxX1.TabIndex = 1;
+            this.tbOutput.Border.Class = "TextBoxBorder";
+            this.tbOutput.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbOutput.ButtonCustom.Tooltip = "";
+            this.tbOutput.ButtonCustom2.Tooltip = "";
+            this.tbOutput.Location = new System.Drawing.Point(93, 450);
+            this.tbOutput.Name = "tbOutput";
+            this.tbOutput.PreventEnterBeep = true;
+            this.tbOutput.Size = new System.Drawing.Size(483, 21);
+            this.tbOutput.TabIndex = 1;
             // 
             // labelX1
             // 
@@ -388,6 +400,7 @@
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.TabIndex = 3;
             this.buttonX1.Text = "...";
+            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // buttonX9
             // 
@@ -399,6 +412,7 @@
             this.buttonX9.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX9.TabIndex = 4;
             this.buttonX9.Text = "确定";
+            this.buttonX9.Click += new System.EventHandler(this.buttonX9_Click);
             // 
             // buttonX10
             // 
@@ -410,20 +424,43 @@
             this.buttonX10.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX10.TabIndex = 5;
             this.buttonX10.Text = "取消";
+            this.buttonX10.Click += new System.EventHandler(this.buttonX10_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // command1
+            // 
+            this.command1.Name = "command1";
+            // 
+            // circularProgress1
+            // 
+            // 
+            // 
+            // 
+            this.circularProgress1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.circularProgress1.Location = new System.Drawing.Point(592, 501);
+            this.circularProgress1.Name = "circularProgress1";
+            this.circularProgress1.Size = new System.Drawing.Size(75, 23);
+            this.circularProgress1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
+            this.circularProgress1.TabIndex = 6;
             // 
             // WeightedOverlayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 526);
+            this.Controls.Add(this.circularProgress1);
             this.Controls.Add(this.buttonX10);
             this.Controls.Add(this.buttonX9);
             this.Controls.Add(this.buttonX1);
             this.Controls.Add(this.labelX1);
-            this.Controls.Add(this.textBoxX1);
+            this.Controls.Add(this.tbOutput);
             this.Controls.Add(this.groupPanel1);
             this.Name = "WeightedOverlayForm";
             this.Text = "加权叠加";
+            this.Load += new System.EventHandler(this.WeightedOverlayForm_Load);
             this.groupPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -432,32 +469,37 @@
         #endregion
 
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX tbOutput;
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.ButtonX buttonX1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
+        private DevComponents.DotNetBar.Controls.TextBoxX tbZonghe;
         private DevComponents.DotNetBar.LabelX labelX9;
         private DevComponents.DotNetBar.LabelX labelX8;
         private DevComponents.DotNetBar.LabelX labelX7;
         private DevComponents.DotNetBar.LabelX labelX6;
         private DevComponents.DotNetBar.LabelX labelX5;
-        private DevComponents.DotNetBar.ButtonX buttonX7;
-        private DevComponents.DotNetBar.ButtonX buttonX6;
+        private DevComponents.DotNetBar.ButtonX bSave;
+        private DevComponents.DotNetBar.ButtonX bOpen;
         private DevComponents.DotNetBar.ButtonX buttonX5;
         private DevComponents.DotNetBar.ButtonX buttonX4;
         private DevComponents.DotNetBar.ButtonX buttonX3;
         private DevComponents.DotNetBar.ButtonX buttonX2;
         private System.Windows.Forms.ListView listView1;
         private DevComponents.DotNetBar.ButtonX buttonX8;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX5;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX4;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX3;
+        private DevComponents.DotNetBar.Controls.TextBoxX tbStart;
+        private DevComponents.DotNetBar.Controls.TextBoxX tbOver;
+        private DevComponents.DotNetBar.Controls.TextBoxX tbPlus;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private DevComponents.DotNetBar.ButtonX buttonX9;
         private DevComponents.DotNetBar.ButtonX buttonX10;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private DevComponents.DotNetBar.BalloonTip balloonTip1;
+        private DevComponents.DotNetBar.Command command1;
+        private DevComponents.DotNetBar.Controls.CircularProgress circularProgress1;
     }
 }

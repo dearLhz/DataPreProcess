@@ -18,38 +18,38 @@ namespace PreDataMenu
         {
             switch (pos)
             {
-                case 0:
-                    itemDef.ID = "DataPreProcess.cClip";
+                case 6:
+                    itemDef.ID = "PreDataMenu.cClip";
                     itemDef.Group = false;
                     break;
 
                 case 1:
-                    itemDef.ID = "DataPreProcess.cMask";
+                    itemDef.ID = "PreDataMenu.cMask";
                     itemDef.Group = false;
                     break;
 
-                case 2:
-                    itemDef.ID = "DataPreProcess.cRasCalculator";
+                case 0:
+                    itemDef.ID = "PreDataMenu.cRasCalculator";
                     itemDef.Group = false;
                     break;
 
                 case 3:
-                    itemDef.ID = "DataPreProcess.cRasReclass";
+                    itemDef.ID = "PreDataMenu.cRasReclass";
                     itemDef.Group = false;
                     break;
 
                 case 4:
-                    itemDef.ID = "DataPreProcess.cRasterToVecter";
+                    itemDef.ID = "PreDataMenu.cRasterToVecter";
                     itemDef.Group = false;
                     break;
 
                 case 5:
-                    itemDef.ID = "DataPreProcess.cVecterToRaster";
+                    itemDef.ID = "PreDataMenu.cVecterToRaster";
                     itemDef.Group = false;
                     break;
 
-                case 6:
-                    itemDef.ID = "DataPreProcess.cWeigOverlay";
+                case 2:
+                    itemDef.ID = "PreDataMenu.cWeigOverlay";
                     itemDef.Group = false;
                     break;
 
@@ -60,7 +60,7 @@ namespace PreDataMenu
 
         public long ItemCount//项目数量
         {
-            get { return 6; }
+            get { return 7; }
         }
 
         public string Name

@@ -15,14 +15,14 @@ using System.Windows.Forms;
 
 namespace PreDataMenu
 {
-    public partial class FormClip : Form
+    public partial class FormClip : DevComponents.DotNetBar.OfficeForm
     {
         private IMap pMap;
         public FormClip(IMap _pMap)
         {
             InitializeComponent();
             ////禁用Glass主题
-            //this.EnableGlass = false;
+            this.EnableGlass = false;
             //不显示最大化最小化按钮
             this.MaximizeBox = false;
             this.MinimizeBox = false;

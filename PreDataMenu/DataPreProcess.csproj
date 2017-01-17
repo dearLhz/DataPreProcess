@@ -7,8 +7,8 @@
     <ProjectGuid>{D26CA775-F9F0-474C-82A1-813198F34D64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PreDataMenu</RootNamespace>
-    <AssemblyName>PreDataMenu</AssemblyName>
+    <RootNamespace>DataPreProcess</RootNamespace>
+    <AssemblyName>DataPreProcess</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -183,6 +183,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RasReclassForm.resx">
       <DependentUpon>RasReclassForm.cs</DependentUpon>

@@ -13,3 +13,17 @@ E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.pdb
 E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.FormClip.resources
 E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.FormMask.resources
 E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.WeightedOverlayForm.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.FormClip.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.FormMask.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.RasReclassForm.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.RasTercalForm.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.RasterToVecterForm.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.VecteToRasterForm.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.WeightedOverlayForm.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\DataPreProcess.csproj.GenerateResource.Cache
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\DataPreProcess.Properties.Resources.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\bin\Debug\DataPreProcess.dll.config
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\bin\Debug\DataPreProcess.dll
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\bin\Debug\DataPreProcess.pdb
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\DataPreProcess.dll
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\DataPreProcess.pdb

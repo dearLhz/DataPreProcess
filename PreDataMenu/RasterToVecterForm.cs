@@ -20,7 +20,7 @@ using System.Windows.Forms;
 
 namespace PreDataMenu
 {
-    public partial class RasterToVecterForm : Form
+    public partial class RasterToVecterForm : DevComponents.DotNetBar.OfficeForm
     {
         public IMap pMap;
         public int layerIndex;
@@ -41,7 +41,7 @@ namespace PreDataMenu
         public RasterToVecterForm()
         {
             InitializeComponent();
-            
+            this.EnableGlass = false;
             //不显示最大化最小化按钮
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -52,7 +52,7 @@ namespace PreDataMenu
         //打开
         private void buttonX5_Click(object sender, EventArgs e)
         {
-            
+            pRLayer = new RasterLayer();
 
             openFileDialog1.Filter = "TIFF tif|*.tif|All files (*.*)|*";
             openFileDialog1.RestoreDirectory = true;
@@ -67,6 +67,19 @@ namespace PreDataMenu
                 tbInput.Text = pFilePath + "\\" + pFileName;
 
                 pRLayer.CreateFromFilePath(openFileDialog1.FileName);
+            }
+
+            comboBox2.Enabled = true;
+
+            pTable = (ITable)pRLayer;
+
+            int fieldCount, i;
+            fieldCount = pTable.Fields.FieldCount;
+            comboBox2.Items.Clear();
+
+            for (i = 0; i < fieldCount; i++)
+            {
+                comboBox2.Items.Add(pTable.Fields.get_Field(i).Name);
             }
         }
         
@@ -179,23 +192,6 @@ namespace PreDataMenu
         //}
         #endregion
 
-
-        //文本变动事件
-        private void tbInput_TextChanged(object sender, EventArgs e)
-        {
-            comboBox2.Enabled = true;
-            
-            pTable = (ITable)pRLayer;
-
-            int fieldCount, i;
-            fieldCount = pTable.Fields.FieldCount;
-            comboBox2.Items.Clear();
-
-            for (i = 0; i < fieldCount; i++)
-            {
-                comboBox2.Items.Add(pTable.Fields.get_Field(i).Name);
-            }
-        }
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
             m_nFieldIndex = comboBox2.SelectedIndex;
@@ -265,7 +261,8 @@ namespace PreDataMenu
         private void RasterToVecterForm_Load(object sender, EventArgs e)
         {
             textBox1.Text = "";
-
+            tbInput.Text = "";
+            comboBox2.Items.Clear();
             //改变窗体风格，使之不能用鼠标拖拽改变大小
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }

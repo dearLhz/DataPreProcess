@@ -212,10 +212,6 @@
             this.buttonX5.Text = "...";
             this.buttonX5.Click += new System.EventHandler(this.buttonX5_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // tbInput
             // 
             // 
@@ -230,7 +226,6 @@
             this.tbInput.PreventEnterBeep = true;
             this.tbInput.Size = new System.Drawing.Size(208, 21);
             this.tbInput.TabIndex = 15;
-            this.tbInput.TextChanged += new System.EventHandler(this.tbInput_TextChanged);
             // 
             // RasterToVecterForm
             // 
@@ -251,6 +246,7 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.labelX1);
+            this.DoubleBuffered = true;
             this.Name = "RasterToVecterForm";
             this.Text = "栅格转矢量";
             this.Load += new System.EventHandler(this.RasterToVecterForm_Load);
