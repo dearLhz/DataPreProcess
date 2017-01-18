@@ -18,7 +18,7 @@ namespace PreDataMenu
 
         public cRasReclass()
         {
-            string str = @"..\Data\river-Image\02数据预处理\RasterReClass.png";
+            string str = @"..\Data\Image\DatapreMenu\\RasterReClass.png";
             if (System.IO.File.Exists(str))
                 m_hBitmap = new Bitmap(str);
             else

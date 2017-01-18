@@ -18,7 +18,7 @@ namespace PreDataMenu
 
         public cClip()
         {
-            string str = @"..\Data\Image\DatapreMenu\Aspect.png";
+            string str = @"..\Data\Image\DatapreMenu\Clip.png";
             if (System.IO.File.Exists(str))
                 m_hBitmap = new Bitmap(str);
             else

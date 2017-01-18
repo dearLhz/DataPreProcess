@@ -40,6 +40,8 @@ namespace PreDataMenu
             this.MinimizeBox = false;
             //去除图标
             this.ShowIcon = false;
+            //改变窗体风格，使之不能用鼠标拖拽改变大小
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
         /// <summary>
         /// 读取当前图层地图

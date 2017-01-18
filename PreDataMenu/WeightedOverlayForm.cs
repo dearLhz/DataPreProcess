@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,9 +15,29 @@ namespace PreDataMenu
 {
     public partial class WeightedOverlayForm : DevComponents.DotNetBar.OfficeForm
     {
+
+        #region 禁止最大化窗体
+        [DllImport("user32.dll", EntryPoint = "GetSystemMenu")] //导入API函数
+        extern static System.IntPtr GetSystemMenu(System.IntPtr hWnd, System.IntPtr bRevert);
+
+        [DllImport("user32.dll", EntryPoint = "RemoveMenu")]
+        extern static int RemoveMenu(IntPtr hMenu, int nPos, int flags);
+        static int MF_BYPOSITION = 0x400;
+        static int MF_REMOVE = 0x1000;
+        #endregion
+
         public WeightedOverlayForm()
         {
             InitializeComponent();
+            ////禁用Glass主题
+            this.EnableGlass = false;
+            //不显示最大化最小化按钮
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            //改变窗体风格，使之不能用鼠标拖拽改变大小
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //去除图标
+            this.ShowIcon = false;
         }
 
         //启动项

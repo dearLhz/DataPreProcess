@@ -17,7 +17,7 @@ namespace PreDataMenu
 
         public cWeigOverlay()
         {
-            string str = @"..\Data\river-Image\03空间分析\mask.png";
+            string str = @"..\Data\Image\DatapreMenu\WeigOverlay.png";
             if (System.IO.File.Exists(str))
                 m_hBitmap = new Bitmap(str);
             else

@@ -30,7 +30,8 @@ namespace PreDataMenu
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             //去除图标
             this.ShowIcon = false;
-
+            //改变窗体风格，使之不能用鼠标拖拽改变大小
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.pMap = _pMap;
         }
 

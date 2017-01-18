@@ -18,7 +18,7 @@ namespace PreDataMenu
 
         public cVecterToRaster()
         {
-            string str = @"..\Data\river-Image\02数据预处理\shp2rst.png";
+            string str = @"..\Data\Image\DatapreMenu\shp2rst.png";
             if (System.IO.File.Exists(str))
                 m_hBitmap = new Bitmap(str);
             else

@@ -85,22 +85,26 @@ namespace PreDataMenu
 
                 pFLayer = new FeatureLayerClass(); // 4
                 pFLayer.FeatureClass = pFC;
-                pFLayer.Name = pFC.AliasName; // 5       ;
+                pFLayer.Name = pFC.AliasName; // 5   
+
+                #region 读取字段
+                comboBox2.Enabled = true;
+
+                pTable = (ITable)pFLayer;
+
+                int fieldCount, i;
+                fieldCount = pTable.Fields.FieldCount;
+                comboBox2.Items.Clear();
+
+                for (i = 0; i < fieldCount; i++)
+                {
+                    comboBox2.Items.Add(pTable.Fields.get_Field(i).Name);
+                }
+                #endregion;
                 
             }
 
-            comboBox2.Enabled = true;
-
-            pTable = (ITable)pFLayer;
-
-            int fieldCount, i;
-            fieldCount = pTable.Fields.FieldCount;
-            comboBox2.Items.Clear();
-
-            for (i = 0; i < fieldCount; i++)
-            {
-                comboBox2.Items.Add(pTable.Fields.get_Field(i).Name);
-            }
+            
         }
 
 
