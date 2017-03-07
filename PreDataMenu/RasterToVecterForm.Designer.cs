@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RasterToVecterForm));
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.comboBox2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -103,12 +104,12 @@
             // 
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Image = ((System.Drawing.Image)(resources.GetObject("buttonX1.Image")));
             this.buttonX1.Location = new System.Drawing.Point(320, 162);
             this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(35, 23);
+            this.buttonX1.Size = new System.Drawing.Size(25, 21);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.TabIndex = 5;
-            this.buttonX1.Text = "...";
             this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // textBox1
@@ -164,7 +165,7 @@
             // 
             this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX2.Location = new System.Drawing.Point(89, 309);
+            this.buttonX2.Location = new System.Drawing.Point(90, 309);
             this.buttonX2.Name = "buttonX2";
             this.buttonX2.Size = new System.Drawing.Size(75, 23);
             this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -194,7 +195,7 @@
             // 
             // 
             this.circularProgress1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.circularProgress1.Location = new System.Drawing.Point(320, 344);
+            this.circularProgress1.Location = new System.Drawing.Point(309, 344);
             this.circularProgress1.Name = "circularProgress1";
             this.circularProgress1.Size = new System.Drawing.Size(75, 23);
             this.circularProgress1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
@@ -204,12 +205,12 @@
             // 
             this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX5.Location = new System.Drawing.Point(320, 42);
+            this.buttonX5.Image = ((System.Drawing.Image)(resources.GetObject("buttonX5.Image")));
+            this.buttonX5.Location = new System.Drawing.Point(320, 44);
             this.buttonX5.Name = "buttonX5";
-            this.buttonX5.Size = new System.Drawing.Size(35, 23);
+            this.buttonX5.Size = new System.Drawing.Size(25, 21);
             this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX5.TabIndex = 14;
-            this.buttonX5.Text = "...";
             this.buttonX5.Click += new System.EventHandler(this.buttonX5_Click);
             // 
             // tbInput
@@ -231,7 +232,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 368);
+            this.ClientSize = new System.Drawing.Size(362, 368);
             this.Controls.Add(this.tbInput);
             this.Controls.Add(this.buttonX5);
             this.Controls.Add(this.circularProgress1);

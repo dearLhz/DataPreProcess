@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RasTercalForm));
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -528,7 +529,6 @@
             // 
             this.listBox1.BackgroundStyle.Class = "ListBoxAdv";
             this.listBox1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.listBox1.CheckStateMember = null;
             this.listBox1.ContainerControlProcessDialogKey = true;
             this.listBox1.DragDropSupport = true;
             this.listBox1.Location = new System.Drawing.Point(15, 3);
@@ -569,12 +569,12 @@
             // 
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Image = ((System.Drawing.Image)(resources.GetObject("buttonX1.Image")));
             this.buttonX1.Location = new System.Drawing.Point(659, 447);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(33, 23);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.TabIndex = 3;
-            this.buttonX1.Text = "...";
             this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // buttonX2
@@ -612,6 +612,7 @@
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupPanel1);
+            this.DoubleBuffered = true;
             this.Name = "RasTercalForm";
             this.Text = "栅格计算器";
             this.Load += new System.EventHandler(this.RasTercalForm_Load);

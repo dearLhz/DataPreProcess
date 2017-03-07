@@ -1,6 +1,9 @@
-﻿using ESRI.ArcGIS.Carto;
+﻿using DevComponents.DotNetBar;
+using ESRI.ArcGIS.AnalysisTools;
+using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.DataSourcesFile;
 using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.Geoprocessing;
 using ESRI.ArcGIS.Geoprocessor;
 using System;
 using System.Collections.Generic;
@@ -38,78 +41,135 @@ namespace PreDataMenu
         //确定
         private void btnOK_Click(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            //    IFeatureClass featureclassInput = null;
+            //    IFeatureClass featureclassClip = null;
+
+            //    IFields outfields = null;
+
+            //    // Create a new ShapefileWorkspaceFactory CoClass to create a new workspace
+            //    IWorkspaceFactory workspaceFactory = new ShapefileWorkspaceFactoryClass();
+
+            //    // System.IO.Path.GetDirectoryName(shapefileLocation) returns the directory part of the string. Example: "C:\test\"
+            //    // System.IO.Path.GetFileNameWithoutExtension(shapefileLocation) returns the base filename (without extension). Example: "cities"
+            //    //IFeatureClass featureClass = featureWorkspace.OpenFeatureClass(System.IO.Path.GetFileNameWithoutExtension(shapefileLocation));
+
+            //    IFeatureWorkspace featureWorkspaceInput = (IFeatureWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(TxtInputFile.Text), 0); // Explicit Cast
+            //    IFeatureWorkspace featureWorkspaceOut = (IFeatureWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(txtOutputPath.Text), 0);
+            //    IFeatureWorkspace featureWorkspaceClip = (IFeatureWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(txtClipsFile.Text), 0);
+
+            //    //timer 控件可用
+            //    timerPro.Enabled = true;
+            //    //scroll the textbox to the bottom
+
+            //    txtMessages.Text = "\r\n分析开始,这可能需要几分钟时间,请稍候..\r\n";
+            //    txtMessages.Update();
+
+            //    //inputfeatureclass = featureWorkspace.OpenFeatureClass("land00_ws");
+            //    //clipfeatureclass = featureWorkspace.OpenFeatureClass("drain_ws_buffer");
+
+            //    featureclassInput = featureWorkspaceInput.OpenFeatureClass(System.IO.Path.GetFileNameWithoutExtension(TxtInputFile.Text));
+            //    featureclassClip = featureWorkspaceClip.OpenFeatureClass(System.IO.Path.GetFileNameWithoutExtension(txtClipsFile.Text));
+            //    outfields = featureclassInput.Fields;
+
+            //    Geoprocessor gp = new Geoprocessor();
+            //    gp.OverwriteOutput = true;
+            //    //IFeatureClass outfeatureclass = featureWorkspace.CreateFeatureClass("Clip_result", outfields, null, null, esriFeatureType.esriFTSimple, "Shape", "");
+            //    IFeatureClass featureclassOut = null;
+
+            //    //文件存在的处理
+            //    if (File.Exists(txtOutputPath.Text.Trim()) == true)
+            //    {
+            //        featureclassOut = featureWorkspaceOut.OpenFeatureClass(System.IO.Path.GetFileNameWithoutExtension(txtOutputPath.Text));
+            //        DelFeatureFile(featureclassOut, txtOutputPath.Text.Trim());
+            //    }
+
+            //    featureclassOut = featureWorkspaceOut.CreateFeatureClass(System.IO.Path.GetFileNameWithoutExtension(txtOutputPath.Text), outfields, null, null, esriFeatureType.esriFTSimple, "Shape", "");
+
+            //    ESRI.ArcGIS.AnalysisTools.Clip clipTool =
+            //        new ESRI.ArcGIS.AnalysisTools.Clip(featureclassInput, featureclassClip, featureclassOut);
+
+            //    gp.Execute(clipTool, null);
+            //    workspaceFactory = null;
+
+            //    //复制feature层
+            //    //IDataset pDataset = outfeatureclass as IDataset;
+            //    //pDataset.Copy("Clip_result1", featureWorkspace as IWorkspace);   
+
+            //    //添加图层到当前地图
+            //    IFeatureLayer outlayer = new FeatureLayerClass();
+            //    outlayer.FeatureClass = featureclassOut;
+            //    outlayer.Name = featureclassOut.AliasName;
+            //    pMap.AddLayer((ILayer)outlayer);
+            //    //
+            //    txtMessages.Text += "\r\n分析完成.\r\n";
+            //    timerPro.Enabled = false;
+            //}
+            //catch (Exception ex)
+            //{
+            //    //
+            //    txtMessages.Text += "\r\n分析失败.\r\n";
+            //    timerPro.Enabled = false;
+            //    MessageBox.Show(ex.Message.ToString());
+            //}
+
+
+
+            command1.Execute();
+            circularProgress1.IsRunning = true;
+            #region GP工具的使用
+            //得到参数
+
+            string in_polygon = TxtInputFile.Text;
+            string upd_polygon = txtClipsFile.Text;
+            string out_polygon = txtOutputPath.Text;
+            Geoprocessor gp = new Geoprocessor();
+            gp.OverwriteOutput = true;
+            //设置矢量转栅格参数 
+
+            ESRI.ArcGIS.AnalysisTools.Clip Clippolygon = new Clip();
+            Clippolygon.in_features = in_polygon;
+            Clippolygon.clip_features = upd_polygon;
+            Clippolygon.out_feature_class = out_polygon;
+            if (txtTolerance.Text != "")
             {
-                IFeatureClass featureclassInput = null;
-                IFeatureClass featureclassClip = null;
-
-                IFields outfields = null;
-
-                // Create a new ShapefileWorkspaceFactory CoClass to create a new workspace
-                IWorkspaceFactory workspaceFactory = new ShapefileWorkspaceFactoryClass();
-
-                // System.IO.Path.GetDirectoryName(shapefileLocation) returns the directory part of the string. Example: "C:\test\"
-                // System.IO.Path.GetFileNameWithoutExtension(shapefileLocation) returns the base filename (without extension). Example: "cities"
-                //IFeatureClass featureClass = featureWorkspace.OpenFeatureClass(System.IO.Path.GetFileNameWithoutExtension(shapefileLocation));
-
-                IFeatureWorkspace featureWorkspaceInput = (IFeatureWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(TxtInputFile.Text), 0); // Explicit Cast
-                IFeatureWorkspace featureWorkspaceOut = (IFeatureWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(txtOutputPath.Text), 0);
-                IFeatureWorkspace featureWorkspaceClip = (IFeatureWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(txtClipsFile.Text), 0);
-
-                //timer 控件可用
-                timerPro.Enabled = true;
-                //scroll the textbox to the bottom
-
-                txtMessages.Text = "\r\n分析开始,这可能需要几分钟时间,请稍候..\r\n";
-                txtMessages.Update();
-
-                //inputfeatureclass = featureWorkspace.OpenFeatureClass("land00_ws");
-                //clipfeatureclass = featureWorkspace.OpenFeatureClass("drain_ws_buffer");
-
-                featureclassInput = featureWorkspaceInput.OpenFeatureClass(System.IO.Path.GetFileNameWithoutExtension(TxtInputFile.Text));
-                featureclassClip = featureWorkspaceClip.OpenFeatureClass(System.IO.Path.GetFileNameWithoutExtension(txtClipsFile.Text));
-                outfields = featureclassInput.Fields;
-
-                Geoprocessor gp = new Geoprocessor();
-                gp.OverwriteOutput = true;
-                //IFeatureClass outfeatureclass = featureWorkspace.CreateFeatureClass("Clip_result", outfields, null, null, esriFeatureType.esriFTSimple, "Shape", "");
-                IFeatureClass featureclassOut = null;
-
-                //文件存在的处理
-                if (File.Exists(txtOutputPath.Text.Trim()) == true)
-                {
-                    featureclassOut = featureWorkspaceOut.OpenFeatureClass(System.IO.Path.GetFileNameWithoutExtension(txtOutputPath.Text));
-                    DelFeatureFile(featureclassOut, txtOutputPath.Text.Trim());
-                }
-
-                featureclassOut = featureWorkspaceOut.CreateFeatureClass(System.IO.Path.GetFileNameWithoutExtension(txtOutputPath.Text), outfields, null, null, esriFeatureType.esriFTSimple, "Shape", "");
-
-                ESRI.ArcGIS.AnalysisTools.Clip clipTool =
-                    new ESRI.ArcGIS.AnalysisTools.Clip(featureclassInput, featureclassClip, featureclassOut);
-
-                gp.Execute(clipTool, null);
-                workspaceFactory = null;
-
-                //复制feature层
-                //IDataset pDataset = outfeatureclass as IDataset;
-                //pDataset.Copy("Clip_result1", featureWorkspace as IWorkspace);   
-
-                //添加图层到当前地图
-                IFeatureLayer outlayer = new FeatureLayerClass();
-                outlayer.FeatureClass = featureclassOut;
-                outlayer.Name = featureclassOut.AliasName;
-                pMap.AddLayer((ILayer)outlayer);
-                //
-                txtMessages.Text += "\r\n分析完成.\r\n";
-                timerPro.Enabled = false;
+                Clippolygon.cluster_tolerance = double.Parse(txtTolerance.Text) + " " + (string)comboBox1.SelectedItem;
             }
-            catch (Exception ex)
-            {
-                //
-                txtMessages.Text += "\r\n分析失败.\r\n";
-                timerPro.Enabled = false;
-                MessageBox.Show(ex.Message.ToString());
-            }
+            ////执行GP工具
+            IGeoProcessorResult results = (IGeoProcessorResult)gp.Execute(Clippolygon, null);
+            //object sev = null;
+            //try
+            //{
+            //    // Execute the tool.
+            //    gp.Execute(SymDiffpolygon, null);
+
+            //    //Console.WriteLine(GP.GetMessages(ref sev));
+            //    MessageBox.Show(gp.GetMessages(ref sev));
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Print geoprocessing execution error messages.
+            //    //Console.WriteLine(GP.GetMessages(ref sev));
+            //    MessageBox.Show(gp.GetMessages(ref sev));
+            //}
+            #endregion
+            circularProgress1.IsRunning = false;
+            #region 运行完成之后的信息提示窗口
+            balloonTip1.Enabled = true;
+
+            DevComponents.DotNetBar.Balloon b = new DevComponents.DotNetBar.Balloon();
+            b.Style = eBallonStyle.Alert;
+            //b.CaptionImage = balloonTipFocus.CaptionImage.Clone() as Image;
+            b.CaptionText = "信息提示";
+            b.Text = "运行成功！";
+            b.AlertAnimation = eAlertAnimation.TopToBottom;
+            b.AutoResize();
+            b.AutoClose = true;
+            b.AutoCloseTimeOut = 4;
+            b.Owner = this;
+            b.Show(btnOK, false);
+            #endregion
         }
 
         //输入图层
@@ -233,19 +293,14 @@ namespace PreDataMenu
             this.Close();
         }
 
-        private void timerPro_Tick(object sender, EventArgs e)
-        {
-            txtMessages.Text += " * ";
-            txtMessages.Update();
-        }
         //启动项
         private void FormClip_Load(object sender, EventArgs e)
         {
             txtClipsFile.Text = "";
             TxtInputFile.Text = "";
-            txtMessages.Text = "";
             txtOutputPath.Text = "";
             txtTolerance.Text = "";
+            comboBox1.Text = "Unknown";
         }
         
     }

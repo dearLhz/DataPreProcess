@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMask));
             this.circularProgress1 = new DevComponents.DotNetBar.Controls.CircularProgress();
             this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
@@ -53,7 +54,7 @@
             // 
             // 
             this.circularProgress1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.circularProgress1.Location = new System.Drawing.Point(280, 316);
+            this.circularProgress1.Location = new System.Drawing.Point(277, 321);
             this.circularProgress1.Name = "circularProgress1";
             this.circularProgress1.Size = new System.Drawing.Size(75, 23);
             this.circularProgress1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
@@ -63,36 +64,36 @@
             // 
             this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX5.Image = ((System.Drawing.Image)(resources.GetObject("buttonX5.Image")));
             this.buttonX5.Location = new System.Drawing.Point(289, 127);
             this.buttonX5.Name = "buttonX5";
-            this.buttonX5.Size = new System.Drawing.Size(35, 21);
+            this.buttonX5.Size = new System.Drawing.Size(25, 21);
             this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX5.TabIndex = 22;
-            this.buttonX5.Text = "...";
             this.buttonX5.Click += new System.EventHandler(this.buttonX5_Click);
             // 
             // buttonX4
             // 
             this.buttonX4.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX4.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX4.Image = ((System.Drawing.Image)(resources.GetObject("buttonX4.Image")));
             this.buttonX4.Location = new System.Drawing.Point(289, 77);
             this.buttonX4.Name = "buttonX4";
-            this.buttonX4.Size = new System.Drawing.Size(35, 21);
+            this.buttonX4.Size = new System.Drawing.Size(25, 21);
             this.buttonX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX4.TabIndex = 21;
-            this.buttonX4.Text = "...";
             this.buttonX4.Click += new System.EventHandler(this.buttonX4_Click);
             // 
             // buttonX3
             // 
             this.buttonX3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX3.Image = ((System.Drawing.Image)(resources.GetObject("buttonX3.Image")));
             this.buttonX3.Location = new System.Drawing.Point(289, 32);
             this.buttonX3.Name = "buttonX3";
-            this.buttonX3.Size = new System.Drawing.Size(35, 21);
+            this.buttonX3.Size = new System.Drawing.Size(25, 21);
             this.buttonX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX3.TabIndex = 20;
-            this.buttonX3.Text = "...";
             this.buttonX3.Click += new System.EventHandler(this.buttonX3_Click);
             // 
             // buttonX2
@@ -111,7 +112,7 @@
             // 
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(77, 292);
+            this.buttonX1.Location = new System.Drawing.Point(66, 292);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(75, 23);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -208,7 +209,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 341);
+            this.ClientSize = new System.Drawing.Size(328, 341);
             this.Controls.Add(this.circularProgress1);
             this.Controls.Add(this.buttonX5);
             this.Controls.Add(this.buttonX4);

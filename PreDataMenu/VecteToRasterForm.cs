@@ -56,6 +56,7 @@ namespace PreDataMenu
             textBox1.Text = "";
             textBox2.Text = "";
             tbInput.Text = "";
+            comboBox2.Text = "";
             comboBox2.Items.Clear();
 
             //改变窗体风格，使之不能用鼠标拖拽改变大小
@@ -305,6 +306,8 @@ namespace PreDataMenu
         }
 
         # endregion
+
+
 
         
        

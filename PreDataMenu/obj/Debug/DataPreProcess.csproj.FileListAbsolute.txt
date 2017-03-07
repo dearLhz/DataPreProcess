@@ -15,7 +15,6 @@ E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.FormMask.resources
 E:\新建文件夹\PreDataMenu\obj\Debug\PreDataMenu.WeightedOverlayForm.resources
 C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.FormClip.resources
 C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.FormMask.resources
-C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.RasReclassForm.resources
 C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.RasTercalForm.resources
 C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.RasterToVecterForm.resources
 C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\PreDataMenu.VecteToRasterForm.resources
@@ -27,3 +26,5 @@ C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\bin\Debug\DataPrePr
 C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\bin\Debug\DataPreProcess.pdb
 C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\DataPreProcess.dll
 C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\DataPreProcess.pdb
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\DataPreProcess.RasReclassForm.resources
+C:\Users\liangPC\Documents\GitHub\DataPreProcess\PreDataMenu\obj\Debug\DataPreProcess.csprojResolveAssemblyReference.cache

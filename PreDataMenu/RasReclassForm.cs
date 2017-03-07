@@ -1,5 +1,6 @@
 ﻿using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.DataSourcesRaster;
+using ESRI.ArcGIS.esriSystem;
 using ESRI.ArcGIS.GeoAnalyst;
 using ESRI.ArcGIS.Geodatabase;
 using System;
@@ -8,45 +9,39 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PreDataMenu
+namespace DataPreProcess
 {
-    public partial class RasReclassForm :  DevComponents.DotNetBar.OfficeForm
+    public partial class RasReclassForm : DevComponents.DotNetBar.OfficeForm
     {
-
         private IMap pMap = null;
 
         private static int iReClassCount = 5;
         private IRasterLayer pRLayer = null;
 
+        //int gClassCount = 5;
+        double[] gClassbreaks;
+        string strClassifyMethod = "自然裂点分类";
+        private IClassBreaksRenderer m_classBreaksRenderer;
+
+
         private string strOutDir = "";
-
-        #region 禁止最大化窗体
-        [DllImport("user32.dll", EntryPoint = "GetSystemMenu")] //导入API函数
-        extern static System.IntPtr GetSystemMenu(System.IntPtr hWnd, System.IntPtr bRevert);
-
-        [DllImport("user32.dll", EntryPoint = "RemoveMenu")]
-        extern static int RemoveMenu(IntPtr hMenu, int nPos, int flags);
-        static int MF_BYPOSITION = 0x400;
-        static int MF_REMOVE = 0x1000;
-        #endregion
-
         public RasReclassForm(IMap _pMap)
         {
             InitializeComponent();
             pMap = _pMap;
+            //禁用Glass主题
             this.EnableGlass = false;
             //不显示最大化最小化按钮
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            //
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             //去除图标
             this.ShowIcon = false;
-            //改变窗体风格，使之不能用鼠标拖拽改变大小
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void RasReclassForm_Load(object sender, EventArgs e)
@@ -57,36 +52,43 @@ namespace PreDataMenu
                 strOutDir = Application.StartupPath.Replace("\\bin\\Debug", "\\Data\\data");
                 this.txtPathSave.Text = strOutDir;
                 //添加栅格图层名称到cmbLayer
-                if (pMap != null)
-                {
-                    for (int i = 0; i < pMap.LayerCount; i++)
-                    {
-                        if (pMap.get_Layer(i) is IRasterLayer)
-                            this.cmbLayer.Items.Add(pMap.get_Layer(i).Name);
-                    }
-                    if (this.cmbLayer.Items.Count > 0)
-                        this.cmbLayer.SelectedIndex = 0;
-                }
+                //if (pMap != null)
+                //{
+                //    for (int i = 0; i < pMap.LayerCount; i++)
+                //    {
+                //        if (pMap.get_Layer(i) is IRasterLayer)
+                //            this.cmbLayer.Items.Add(pMap.get_Layer(i).Name);
+                //    }
+                //    if (this.cmbLayer.Items.Count > 0)
+                //        this.cmbLayer.SelectedIndex = 0;
+                //}
                 //初始化lsvView
+                lsvValue.Columns.Clear();
                 this.lsvValue.GridLines = true;     //显示各个记录的分隔线
                 lsvValue.View = View.Details;       //定义列表显示的方式
                 lsvValue.Scrollable = true;         //需要时候显示滚动条
                 lsvValue.MultiSelect = false;             // 不可以多行选择
                 lsvValue.HeaderStyle = ColumnHeaderStyle.Nonclickable;// 不执行操作
-                lsvValue.Columns.Add("原值", 100, HorizontalAlignment.Center);
-                lsvValue.Columns.Add("新值", 100, HorizontalAlignment.Center);
+                lsvValue.Columns.Add("原值", 136, HorizontalAlignment.Center);
+                lsvValue.Columns.Add("新值", 136, HorizontalAlignment.Center);
                 lsvValue.LabelEdit = true;
                 //设置行高
                 ImageList imgList = new ImageList();
                 imgList.ImageSize = new Size(1, 20);
                 lsvValue.SmallImageList = imgList;
+
+                tbInput.Text = "";
+                txtPathSave.Text = "";
+                cmbFieldsName.Text = "";
+                cmbFieldsName.Items.Clear();
+                lsvValue.Items.Clear();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
         private IRasterLayer SetViewShedRenderer(IRaster pInRaster, string sField, string sPath, double[,] dValue)
         {
             try
@@ -146,29 +148,40 @@ namespace PreDataMenu
                 return null;
             }
         }
-        /// <summary>
-        /// 分类
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        //确定
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(lsvValue.Items.Count.ToString());
+            try
+            {
+                if (pRLayer == null)
+                    return;
+                pMap.AddLayer(SetViewShedRenderer(pRLayer.Raster, this.cmbFieldsName.Text, this.txtPathSave.Text, getReClassValue()) as ILayer);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        //取消
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        //分类
         private void button4_Click(object sender, EventArgs e)
         {
-
+            iReClassCount = (int)nudClassCount.Value;
+            if (pRLayer == null)
+                return;
+            setViewValue(pRLayer.Raster, this.cmbFieldsName.Text);
         }
-        /// <summary>
-        /// 唯一值
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        //唯一
         private void button5_Click(object sender, EventArgs e)
         {
-
+            setOnlyValue(pRLayer.Raster, this.cmbFieldsName.Text);
         }
-        /// <summary>
-        /// 添加
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        //添加
         private void button6_Click(object sender, EventArgs e)
         {
             ListViewItem li = new ListViewItem();
@@ -178,25 +191,16 @@ namespace PreDataMenu
             this.lsvValue.Items.Add(li);
             iReClassCount++;
         }
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        //删除
         private void button7_Click(object sender, EventArgs e)
         {
-
             if (this.lsvValue.SelectedItems.Count > 0)
             {
                 iReClassCount--;
                 this.lsvValue.Items.RemoveAt(this.lsvValue.SelectedItems[0].Index);
             }
         }
-        /// <summary>
-        /// 输出路径
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        //浏览
         private void button3_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDlg = new SaveFileDialog();
@@ -211,50 +215,59 @@ namespace PreDataMenu
             if (dr == DialogResult.OK)
                 this.txtPathSave.Text = saveDlg.FileName;
         }
+        ////图层选择框 选择不同的图层
+        //private void cmbLayer_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    for (int i = 0; i < pMap.LayerCount; i++)
+        //    {
+        //        string name = pMap.get_Layer(i).Name;
+        //        if (pMap.get_Layer(i).Name == this.cmbLayer.Text)
+        //        {
+        //            pRLayer = pMap.get_Layer(i) as IRasterLayer;
+        //            setRasterLayerFiledName(pRLayer, this.cmbFieldsName);
+        //            break;
+        //        }
+        //    }
+        //}
 
-
-        /// <summary>
-        /// 执行按钮
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
+        //打开
+        private void button8_Click(object sender, EventArgs e)
         {
-            try
+            pRLayer = new RasterLayer();
+
+            openFileDialog1.Filter = "TIFF tif|*.tif|All files (*.*)|*";
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (pRLayer == null)
-                    return;
-                pMap.AddLayer(SetViewShedRenderer(pRLayer.Raster, this.cmbFieldsName.Text, this.txtPathSave.Text, getReClassValue()) as ILayer);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
+                string pFilePath, pFileName;
+                int index = this.openFileDialog1.FileName.LastIndexOf("\\");
+                pFilePath = this.openFileDialog1.FileName.Substring(0, index);
+                pFileName = this.openFileDialog1.FileName.Substring(index + 1);
+
+                tbInput.Text = pFilePath + "\\" + pFileName;
+
+                pRLayer.CreateFromFilePath(openFileDialog1.FileName);
+           
+                setRasterLayerFiledName(pRLayer, this.cmbFieldsName);
+   
+
+                //#region 读取字段
+                //comboBox2.Enabled = true;
+
+                //pTable = (ITable)pRLayer;
+
+                //int fieldCount, i;
+                //fieldCount = pTable.Fields.FieldCount;
+                //comboBox2.Items.Clear();
+
+                //for (i = 0; i < fieldCount; i++)
+                //{
+                //    comboBox2.Items.Add(pTable.Fields.get_Field(i).Name);
+                //}
+                //#endregion
             }
         }
-        /// <summary>
-        /// 取消
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        //图层选择框 选择不同的图层
-        private void cmbLayer_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            for (int i = 0; i < pMap.LayerCount; i++)
-            {
-                string name = pMap.get_Layer(i).Name;
-                if (pMap.get_Layer(i).Name == this.cmbLayer.Text)
-                {
-                    pRLayer = pMap.get_Layer(i) as IRasterLayer;
-                    setRasterLayerFiledName(pRLayer, this.cmbFieldsName);
-                    break;
-                }
-            }
-        }
-
         /// <summary>
         /// 添加字段列表到指定的Combobox
         /// </summary>
@@ -292,7 +305,7 @@ namespace PreDataMenu
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
+        double MaxValue;
         /// <summary>
         /// 设置显示的原值--新值
         /// </summary>
@@ -314,6 +327,8 @@ namespace PreDataMenu
 
                 double dMaxValue = pRasterStatistic.Maximum;
                 double dMinValue = pRasterStatistic.Minimum;
+
+                MaxValue = dMaxValue;
 
                 if ((dMaxValue - dMinValue) / iReClassCount >= 1)
                 {
@@ -337,8 +352,49 @@ namespace PreDataMenu
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+
+        /// <summary>
+        /// 设置显示唯一值
+        /// </summary>
+        /// <param name="pInRaster"></param>
+        /// <param name="sField"></param>
+        /// <returns></returns>
+        double dMaxValue;
+        public void setOnlyValue(IRaster pInRaster, string sField)
+        {
+            try
+            {
+                //IRasterDescriptor pRD = new RasterDescriptorClass();
+                //pRD.Create(pInRaster, new QueryFilterClass(), sField);
+                //IGeoDataset pGeodataset = pInRaster as IGeoDataset;
+                //IRasterLayer pRLayer = new RasterLayerClass();
+                //IRasterBandCollection pRsBandCol = pGeodataset as IRasterBandCollection;
+                //IRasterBand pRasterBand = pRsBandCol.Item(0);
+                //pRasterBand.ComputeStatsAndHist();
+                //IRasterStatistics pRasterStatistic = pRasterBand.Statistics;
+
+                //double dMaxValue = pRasterStatistic.Maximum;
+                //double dMinValue = pRasterStatistic.Minimum;
+
+                if (this.cmbFieldsName.Items.Count > 0)
+                    this.lsvValue.Items.Clear();
+                for (int i = 0; i <= MaxValue; i++)
+                {
+                    ListViewItem li = new ListViewItem();
+                    li.SubItems.Clear();
+                    li.SubItems[0].Text = i.ToString();
+                    li.SubItems.Add(i.ToString());
+                    this.lsvValue.Items.Add(li);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
         //选择不同的字段时 相应的改变lstview显示的值
-        private void cmbFieldsName_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void cmbFieldsName_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (pRLayer == null)
                 return;
@@ -388,14 +444,63 @@ namespace PreDataMenu
             }
 
         }
-       
 
+        ////选择分类数目
+        //private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        //{
+        //    iReClassCount = Convert.ToInt32(nudClassCount.Value);
+        //}
 
+        ////执行分类
+        //private void classify()
+        //{
+        //    if (layer2Symbolize == null) return;
+        //    IFeatureClass featureClass = layer2Symbolize.FeatureClass;
+        //    ITable pTable = (ITable)featureClass;
 
+        //    ITableHistogram pTableHistogram = new BasicTableHistogramClass();
+        //    IBasicHistogram pHistogram = (IBasicHistogram)pTableHistogram;
+        //    pTableHistogram.Field = strRendererField;
+        //    if (strNormalizeField.ToLower() != "none")
+        //        pTableHistogram.NormField = strNormalizeField;
+        //    pTableHistogram.Table = pTable;
+        //    object dataFrequency;
+        //    object dataValues;
+        //    pHistogram.GetHistogram(out dataValues, out dataFrequency);
+        //    //下面是分级方法，用于根据获得的值计算得出符合要求的数据
+        //    //根据条件计算出Classes和ClassesCount，numDesiredClasses为预定的分级数目
+        //    IClassifyGEN pClassify = new NaturalBreaksClass();
+        //    switch (strClassifyMethod)
+        //    {
+        //        case "等间隔分类":
+        //            pClassify = new EqualIntervalClass();
+        //            break;
+        //        //case "预定义间隔分类":
+        //        //    pClassify = new DefinedIntervalClass();
+        //        //    break;
+        //        case "分位数分类":
+        //            pClassify = new QuantileClass();
+        //            break;
+        //        case "自然裂点分类":
+        //            pClassify = new NaturalBreaksClass();
+        //            break;
+        //        case "标准差分类":
+        //            pClassify = new StandardDeviationClass();
+        //            break;
+        //        case "几何间隔分类":
+        //            pClassify = new GeometricalIntervalClass();
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    int numDesiredClasses = iReClassCount;
+        //    pClassify.Classify(dataValues, dataFrequency, ref numDesiredClasses);
+        //    gClassbreaks = (double[])pClassify.ClassBreaks;
+
+        //}
+
+        
+
+        
     }
-
-
-
 }
-
-
